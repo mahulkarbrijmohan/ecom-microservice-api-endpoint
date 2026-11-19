@@ -1,0 +1,45 @@
+info:
+  name: Get Admin Token
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8443/realms/ecom-app/protocol/openid-connect/token
+  headers:
+    - name: Content-Type
+      value: application/x-www-form-urlencoded
+  body:
+    type: form-urlencoded
+    data:
+      - name: client_id
+        value: admin-cli
+      - name: username
+        value: user
+      - name: password
+        value: user
+      - name: grant_type
+        value: password
+  auth:
+    type: oauth2
+    flow: authorization_code
+    authorizationUrl: http://localhost:8443/realms/oauth2-demos/protocol/openid-connect/auth
+    accessTokenUrl: http://localhost:8443/realms/oauth2-demos/protocol/openid-connect/token
+    callbackUrl: http://localhost:5173
+    credentials:
+      clientId: "{{auth_secret_1d7m}}"
+      placement: basic_auth_header
+    scope: openid profile roles email
+    pkce: {}
+    tokenConfig:
+      id: oauth-test
+      placement:
+        header: Bearer
+      source: access_token
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

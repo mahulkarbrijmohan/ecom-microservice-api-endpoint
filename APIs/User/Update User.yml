@@ -1,0 +1,42 @@
+info:
+  name: Update User
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: http://localhost:8082/api/users/67d533476a55cf5c8124a59c
+  body:
+    type: json
+    data: "{\r
+
+      \    \"firstName\": \"John Updated\",\r
+
+      \    \"lastName\": \"Doe Updated\",\r
+
+      \    \"email\": \"john@gmail.com\",\r
+
+      \    \"phone\": \"335128571\",\r
+
+      \    \"address\": {\r
+
+      \        \"street\": \"123 Main St\",\r
+
+      \        \"city\": \"New York\",\r
+
+      \        \"state\": \"NY\",\r
+
+      \        \"country\": \"USA\",\r
+
+      \        \"zipcode\": \"10001\"\r
+
+      \    }\r
+
+      }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

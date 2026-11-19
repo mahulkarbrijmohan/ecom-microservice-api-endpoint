@@ -1,0 +1,30 @@
+info:
+  name: Assign Client Role to User
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: http://localhost:8443/admin/realms/ecom-app/users/567f4cb7-00f5-4290-a7fe-abfce18e478b/role-mappings/clients/74d31cf4-5808-43de-93e0-01a079063245
+  headers:
+    - name: Authorization
+      value: "{{bearer_token_00sr}}"
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      [
+        {
+          "id": "c512b750-78b5-4057-9dd8-7953a4b27fbc",
+          "name": "USER"
+        }
+      ]
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

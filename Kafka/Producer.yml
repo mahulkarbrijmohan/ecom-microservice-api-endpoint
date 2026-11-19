@@ -1,0 +1,23 @@
+info:
+  name: Producer
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8085/api/send?orderEvent=88888888
+  params:
+    - name: orderEvent
+      value: "88888888"
+      type: query
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

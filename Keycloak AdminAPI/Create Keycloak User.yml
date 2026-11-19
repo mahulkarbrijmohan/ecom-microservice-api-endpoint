@@ -1,0 +1,46 @@
+info:
+  name: Create Keycloak User
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8443/admin/realms/ecom-app/users
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Authorization
+      value: "{{bearer_token_0jro}}"
+  body:
+    type: text
+    data: |-
+      {
+        "username": "usernew",
+        "email": "usernew@email.com",
+        "enabled": true,
+        "firstName": "New First Name",
+        "lastName": "New Last Name",
+        "credentials": [
+          {
+            "type": "password",
+            "value": "usernew",
+            "temporary": false
+          }
+        ]
+      }
+  auth:
+    type: oauth2
+    flow: client_credentials
+    credentials:
+      placement: basic_auth_header
+    tokenConfig:
+      placement:
+        header: Bearer
+      source: access_token
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

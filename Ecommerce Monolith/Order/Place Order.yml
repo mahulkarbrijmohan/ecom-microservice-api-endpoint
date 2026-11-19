@@ -1,0 +1,24 @@
+info:
+  name: Place Order
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/api/orders
+  headers:
+    - name: X-User-ID
+      value: "1"
+  params:
+    - name: X-User-ID
+      value: "1"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

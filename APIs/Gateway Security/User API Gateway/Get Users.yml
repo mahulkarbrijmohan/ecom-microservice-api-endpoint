@@ -1,0 +1,40 @@
+info:
+  name: Get Users
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: http://localhost:8080/users
+  headers:
+    - name: Authorization
+      value: Bearer 123
+      disabled: true
+  params:
+    - name: ""
+      value: ""
+      type: query
+      disabled: true
+  auth:
+    type: oauth2
+    flow: authorization_code
+    authorizationUrl: http://localhost:8443/realms/ecom-app/protocol/openid-connect/auth
+    accessTokenUrl: http://localhost:8443/realms/ecom-app/protocol/openid-connect/token
+    callbackUrl: http://localhost:5173
+    credentials:
+      clientId: oauth2-pkce
+      placement: basic_auth_header
+    scope: openid profile roles email
+    pkce: {}
+    tokenConfig:
+      id: oauth-ecom-micro
+      placement:
+        header: Bearer
+      source: access_token
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

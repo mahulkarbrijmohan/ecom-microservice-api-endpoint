@@ -1,0 +1,28 @@
+info:
+  name: Encrypt
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8085/encrypt
+  headers:
+    - name: Content-Type
+      value: text/plain
+  body:
+    type: text
+    data: Database-Deployment-Build Server DB
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Generated from cURL: curl --location 'http://localhost:8888/encrypt' \\\r
+
+  --header 'Content-Type: text/plain' \\\r
+
+  --data 'Prod Message'\r\n"

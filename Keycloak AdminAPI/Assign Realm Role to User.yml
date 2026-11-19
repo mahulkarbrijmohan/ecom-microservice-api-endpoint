@@ -1,0 +1,30 @@
+info:
+  name: Assign Realm Role to User
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://localhost:8443/admin/realms/ecom-app/users/567f4cb7-00f5-4290-a7fe-abfce18e478b/role-mappings/realm
+  headers:
+    - name: Authorization
+      value: "{{bearer_token_004b}}"
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      [
+        {
+          "id": "9e9be7fd-ef18-481e-af72-b5e5cc957b09",
+          "name": "offline_access"
+        }
+      ]
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

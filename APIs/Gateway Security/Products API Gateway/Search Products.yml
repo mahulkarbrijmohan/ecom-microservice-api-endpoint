@@ -1,0 +1,37 @@
+info:
+  name: Search Products
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: http://localhost:8080/api/products/search?keyword=iphone
+  params:
+    - name: keyword
+      value: iphone
+      type: query
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"iPhone 16 Pro Updated\",\r
+
+      \    \"description\": \"Latest iPhone with amazing features\",\r
+
+      \    \"price\": 1099.99,\r
+
+      \    \"stockQuantity\": 50,\r
+
+      \    \"category\": \"Electronics\",\r
+
+      \    \"imageUrl\": \"https://placehold.co/600x400\"\r
+
+      }\r\n"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

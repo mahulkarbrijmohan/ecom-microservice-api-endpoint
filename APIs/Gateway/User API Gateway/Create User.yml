@@ -1,0 +1,51 @@
+info:
+  name: Create User
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/users
+  body:
+    type: json
+    data: "{\r
+
+      \    \"firstName\": \"John8\",\r
+
+      \    \"lastName\": \"Doe2\",\r
+
+      \    \"email\": \"john@gmail.com\",\r
+
+      \    \"phone\": \"335128571\",\r
+
+      \    \"address\": {\r
+
+      \        \"street\": \"123 Main St\",\r
+
+      \        \"city\": \"New York\",\r
+
+      \        \"state\": \"NY\",\r
+
+      \        \"country\": \"USA\",\r
+
+      \        \"zipcode\": \"10001\"\r
+
+      \    }\r
+
+      }"
+  auth:
+    type: oauth2
+    flow: client_credentials
+    credentials:
+      placement: basic_auth_header
+    tokenConfig:
+      placement:
+        header: Bearer
+      source: access_token
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

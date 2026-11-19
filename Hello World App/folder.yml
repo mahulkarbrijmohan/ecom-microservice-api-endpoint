@@ -1,0 +1,7 @@
+info:
+  name: Hello World App
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit

@@ -1,0 +1,33 @@
+opencollection: 1.0.0
+
+info:
+  name: Ecommerce Microservices
+
+request:
+  variables:
+    - name: auth_secret_1d7m
+      value: ""
+    - name: auth_secret_01th
+      value: ""
+    - name: auth_secret_172a
+      value: ""
+    - name: bearer_token_00sr
+      value: ""
+    - name: bearer_token_004b
+      value: ""
+    - name: bearer_token_0jro
+      value: ""
+    - name: bearer_token_13vt
+      value: ""
+    - name: json_web_token_14me
+      value: ""
+    - name: json_web_token_0515
+      value: ""
+    - name: json_web_token_172b
+      value: ""
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

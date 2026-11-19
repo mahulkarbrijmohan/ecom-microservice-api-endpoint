@@ -1,0 +1,35 @@
+info:
+  name: Get All Products
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: http://localhost:8080/products
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 503) {
+            console.warn("Service Unavailable (503): Product Service is down");
+            test("Service is not returning 503", function () {
+                expect.fail("Service Unavailable (503): Product Service is down");
+            });
+        }
+
+        if (res.getStatus() === 200) {
+            test("Service recovered - status is 200 OK", function () {
+                expect(res.getStatus()).to.equal(200);
+            });
+        }
+
+        test("Response time is acceptable", () => { expect(res.getResponseTime()).to.be.below(5000); });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

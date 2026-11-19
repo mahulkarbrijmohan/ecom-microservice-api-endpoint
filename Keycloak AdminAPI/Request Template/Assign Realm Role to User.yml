@@ -1,0 +1,30 @@
+info:
+  name: Assign Realm Role to User
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{keycloak_url}}/admin/realms/{{realm}}/users/{{user_id}}/role-mappings/realm"
+  headers:
+    - name: Authorization
+      value: Bearer {{access_token}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      [
+        {
+          "id": "{{role_id}}",
+          "name": "{{role_name}}"
+        }
+      ]
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

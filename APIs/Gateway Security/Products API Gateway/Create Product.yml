@@ -1,0 +1,47 @@
+info:
+  name: Create Product
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/products
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"iPhone 16 Pro\",\r
+
+      \    \"description\": \"Latest iPhone with amazing features\",\r
+
+      \    \"price\": 1099.99,\r
+
+      \    \"stockQuantity\": 50,\r
+
+      \    \"category\": \"Electronics\",\r
+
+      \    \"imageUrl\": \"https://placehold.co/600x400\"\r
+
+      }\r\n"
+  auth:
+    type: oauth2
+    flow: authorization_code
+    authorizationUrl: http://localhost:8443/realms/ecom-app/protocol/openid-connect/auth
+    accessTokenUrl: http://localhost:8443/realms/ecom-app/protocol/openid-connect/token
+    callbackUrl: http://localhost:5173
+    credentials:
+      clientId: oauth2-pkce
+      placement: basic_auth_header
+    pkce: {}
+    tokenConfig:
+      id: oauth-test
+      placement:
+        header: Bearer
+      source: access_token
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

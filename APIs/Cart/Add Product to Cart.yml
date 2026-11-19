@@ -1,0 +1,28 @@
+info:
+  name: Add Product to Cart
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8083/api/cart
+  headers:
+    - name: X-User-ID
+      value: 6aac55eb34011340323e12e0
+  body:
+    type: json
+    data: "{\r
+
+      \    \"productId\": \"2\",\r
+
+      \    \"quantity\": 2\r
+
+      }"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

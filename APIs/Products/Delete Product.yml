@@ -1,0 +1,33 @@
+info:
+  name: Delete Product
+  type: http
+  seq: 3
+
+http:
+  method: DELETE
+  url: http://localhost:8081/api/products/1
+  body:
+    type: json
+    data: "{\r
+
+      \    \"name\": \"iPhone 16 Pro Updated\",\r
+
+      \    \"description\": \"Latest iPhone with amazing features\",\r
+
+      \    \"price\": 1099.99,\r
+
+      \    \"stockQuantity\": 50,\r
+
+      \    \"category\": \"Electronics\",\r
+
+      \    \"imageUrl\": \"https://placehold.co/600x400\"\r
+
+      }\r\n"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,134 @@
+info:
+  name: Create User
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/users
+  body:
+    type: json
+    data: "{\r
+
+      \    \"userName\": \"product45\",\r
+
+      \    \"password\": \"product46\",\r
+
+      \    \"firstName\": \"user36\",\r
+
+      \    \"lastName\": \"product46\",\r
+
+      \    \"email\": \"product268@gmail.com\",\r
+
+      \    \"phone\": \"335128571\",\r
+
+      \    \"address\": {\r
+
+      \        \"street\": \"123 Main St\",\r
+
+      \        \"city\": \"New York\",\r
+
+      \        \"state\": \"NY\",\r
+
+      \        \"country\": \"USA\",\r
+
+      \        \"zipcode\": \"10001\"\r
+
+      \    }\r
+
+      }"
+  auth:
+    type: oauth2
+    flow: authorization_code
+    authorizationUrl: http://localhost:8443/realms/ecom-app/protocol/openid-connect/auth
+    accessTokenUrl: http://localhost:8443/realms/ecom-app/protocol/openid-connect/token
+    callbackUrl: http://localhost:5173
+    credentials:
+      clientId: oauth2-pkce
+      placement: basic_auth_header
+    scope: openid profile roles email
+    pkce: {}
+    tokenConfig:
+      id: oauth-test
+      placement:
+        header: Bearer
+      source: access_token
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: Create User
+    request:
+      url: http://localhost:8080/users
+      method: POST
+      body:
+        type: json
+        data: "{\r
+
+          \    \"userName\": \"john22\",\r
+
+          \    \"password\": \"john22\",\r
+
+          \    \"firstName\": \"john22\",\r
+
+          \    \"lastName\": \"Doe21\",\r
+
+          \    \"email\": \"john21@gmail.com\",\r
+
+          \    \"phone\": \"335128571\",\r
+
+          \    \"address\": {\r
+
+          \        \"street\": \"123 Main St\",\r
+
+          \        \"city\": \"New York\",\r
+
+          \        \"state\": \"NY\",\r
+
+          \        \"country\": \"USA\",\r
+
+          \        \"zipcode\": \"10001\"\r
+
+          \    }\r
+
+          }"
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: transfer-encoding
+          value: chunked
+        - name: content-type
+          value: application/json
+        - name: date
+          value: Sun, 01 Nov 2026 20:04:30 GMT
+        - name: cache-control
+          value: no-cache, no-store, max-age=0, must-revalidate
+        - name: pragma
+          value: no-cache
+        - name: expires
+          value: "0"
+        - name: x-content-type-options
+          value: nosniff
+        - name: x-frame-options
+          value: DENY
+        - name: x-xss-protection
+          value: "0"
+        - name: referrer-policy
+          value: no-referrer
+      body:
+        type: json
+        data: |-
+          {
+            "timestamp": "2026-11-01T20:04:30.234Z",
+            "status": 500,
+            "error": "Internal Server Error",
+            "trace": "org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden on POST request for \"http://localhost:8443/admin/realms/ecom-app/users\": \"{\"error\":\"HTTP 403 Forbidden\"}\"\n\tat org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:112)\n\tat org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:144)\n\tat org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:119)\n\tat org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:807)\n\tat org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:756)\n\tat org.springframework.web.client.RestTemplate.execute(RestTemplate.java:677)\n\tat org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:430)\n\tat com.ecommerceapp.user.service.KeyCloakAdminService.createUser(KeyCloakAdminService.java:82)\n\tat com.ecommerceapp.user.service.UserService.addUser(UserService.java:37)\n\tat com.ecommerceapp.user.controller.UserController.addUser(UserController.java:35)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:565)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)\n\tat org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)\n\tat java.base/java.lang.Thread.run(Thread.java:1474)\n",
+            "message": "403 Forbidden on POST request for \"http://localhost:8443/admin/realms/ecom-app/users\": \"{\"error\":\"HTTP 403 Forbidden\"}\"",
+            "path": "/api/users"
+          }

@@ -1,0 +1,35 @@
+info:
+  name: http://localhost:8443/realms/oauth2-demos/protocol/openid-connect/token
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8443/realms/ecom-app/protocol/openid-connect/token
+  body:
+    type: form-urlencoded
+    data:
+      - name: grant_type
+        value: client_credentials
+      - name: client_id
+        value: "{{auth_secret_01th}}"
+      - name: client_secret
+        value: "{{auth_secret_172a}}"
+      - name: scope
+        value: openid email profile
+  auth:
+    type: oauth2
+    flow: client_credentials
+    credentials:
+      placement: basic_auth_header
+    tokenConfig:
+      placement:
+        header: Bearer
+      source: access_token
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
